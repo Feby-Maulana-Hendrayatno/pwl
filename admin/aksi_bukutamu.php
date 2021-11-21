@@ -19,29 +19,34 @@
         $tgl_bktamu = $_POST['tgl_bktamu'];
         $komentar = $_POST['komentar'];
 
-		$data = mysqli_query($koneksi, "insert into bukutamu values ('', '$status_bktamu', '$nama_bktamu', '$email_bktamu', '$alamat_bktamu', '$tgl_bktamu', '$kmentar') ");
-			echo "<script>window.location='server.php?module=bukutamu&act=tambahbukutamu';</script>";
+		$data = mysqli_query($koneksi, "insert into bukutamu values ('', '$status_bktamu', '$nama_bktamu', '$email_bktamu', '$alamat_bktamu', '$tgl_bktamu', '$komentar') ");
+		echo "<script>window.location='server.php?module=bukutamu';</script>";
 		
 	}
 
-	//update album
-	elseif ($module=='album' AND $act=='update') {
-		if (empty($_POST['nm_album'])) {
-			print "<script>alert(\"album tidak boleh kosong!!!\");
+	//update bukutamu
+	elseif ($module=='bukutamu' AND $act=='update') {
+		if (empty($_POST['status_bktamu'])) {
+			print "<script>alert(\"buku tamu tidak boleh kosong!!!\");
 			location.href = \"javascript:history.go(-1)\";</script>";
 		}
 		else{
 			//apabila album tidak dirubah
 			if (empty($_POST['status'])) {
-				mysqli_query($koneksi,"update album set nm_album='$_POST[nm_album]' WHERE nm_album='$_POST[id]'");
+				mysqli_query($koneksi,"update bukutamu set nm_album='$_POST[nm_album]' WHERE nm_album='$_POST[id]'");
 			}
 
 			//apabila status dirubah
 			else{ 
-				$nm_album=$_POST['nm_album']; 
-				$status = $_POST['status'];
+				$status_bktamu=$_POST['status_bktamu']; 
+				$nama_bktamu = $_POST['nama_bktamu'];
+				$email_bktamu=$_POST['email_bktamu']; 
+				$alamat_bktamu = $_POST['alamat_bktamu'];
+				$tgl_bktamu=$_POST['tgl_bktamu']; 
+				$komentar = $_POST['komentar'];
+				
 
-				mysqli_query($koneksi,"update album set nm_album='$nm_album', status = '$status' where id_album ='$_POST[id]'"); 
+				mysqli_query($koneksi,"update bukutamu set '$status_bktamu'=status_bktamu, '$nama_bktamu'=nama_bktamu, '$email_bktamu'=email_bktamu, '$alamat_bktamu'=alamat_bktamu, '$tgl_bktamu'=tgl_bktamu, '$komentar'=komentar where id_album ='$_POST[id]'"); 
 			} 
 			header('location:server.php?module=album');
 		}
@@ -200,10 +205,10 @@
 
 
 	
-	//hapus record galeri
-	elseif ($module=='galeri' and $act=='hapus') 
+	//hapus buku tamu
+	elseif ($module=='bukutamu' and $act=='hapus') 
 	{
-		$unlink=mysqli_query($koneksi,"select * from galeri where id_galeri='$_GET[id]'");
+		$unlink=mysqli_query($koneksi,"select * from bukutamu where id_galeri='$_GET[id]'");
 		$CekLink=mysqli_fetch_array($unlink);
 		if (!empty($CekLink['gambar'])) 
 		{

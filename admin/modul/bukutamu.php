@@ -31,8 +31,8 @@ switch (@$_GET['act']) {
 				<td>$r[alamat_bktamu]</td>
 				<td>$r[tgl_bktamu]</td>
 				<td>$r[komentar]</td>
-				<td><a href=?module=bukutamu&act=editbukutamu&id=$r[id_bktamu]>Edit</a> | 
-					<a href=\"aksi.php?module=bukutamu&act=hapus&id=$r[id_bktamu]\" onClick=\"return confirm('apakah anda benar akan menghapus user $r[id_bktamu]?')\">Hapus</a></td>
+				<td><a href=?module=bukutamu&act=editbukutamu&id_bktamu=$r[id_bktamu]>Edit</a> | 
+					<a href=\"aksi_bukutamu.php?module=bukutamu&act=hapus&id=$r[id_bktamu]\" onClick=\"return confirm('apakah anda benar akan menghapus user $r[id_bktamu]?')\">Hapus</a></td>
 			  </tr>";
 			$no++;
 	}
@@ -43,7 +43,7 @@ switch (@$_GET['act']) {
 	case "tambahbukutamu":
 		echo "<h2>Tambah Buku Tamu</h2>
 		<div class='col-md-5'>
-		<form method=post action='aksi.php?module=bukutamu&act=input'>
+		<form method=post action='aksi_bukutamu.php?module=bukutamu&act=input'>
 		<table class='table'>
 		<tr>
 			<td>Status:</td>
@@ -82,22 +82,47 @@ switch (@$_GET['act']) {
 		break;
 
 		//edit user
-		case "edituser":
-		$edit=mysqli_query($koneksi, "select * from galeri where id_user='$_GET[id]'");
+		case "editbukutamu":
+		$edit=mysqli_query($koneksi, "select * from bukutamu where id_bktamu='$_GET[id_bktamu]'");
 		$r=mysqli_fetch_array($edit);
-		echo "<h2>Edit User</h2>
+		echo "<h2>Edit Buku Tamu</h2>
 		<div class='col-md-4'>
-		<form method=post action='aksi.php?module=user&act=update'>
-			<input type=hidden name=id value='$r[id_user]'>
-			<table class='table'>
+		<form method=post action='aksi_bukutamu.php?module=user&act=update'>
+			<input type=hidden name=id value='$r[id_bktamu]'>
+			<table class='table'>				
 				<tr>
-					<td>Username:</td>
-					<td><input class='form-control' type=text name=id_user value='$r[id_user]'></td>
+					<td>Status:</td>
+					<td><input class='form-control' type=text name=status_bktamu value='$r[status_bktamu]'></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
-					<td><input class='form-control' type=password name=password ></td>
+					<td>Nama:</td>
+					<td><input class='form-control' type=text name=nama_bktamu value='$r[nama_bktamu]'></td>
 				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input class='form-control' type=text name=email_bktamu value='$r[email_bktamu]'></td>
+				</tr>
+				<tr>
+					<td>Alamat:</td>
+					<td><input class='form-control' type=text name=alamat_bktamu value='$r[alamat_bktamu]'></td>
+				</tr>
+				<tr>
+					<td>Tanggal:</td>
+					<td><input class='form-control' type=date name=tgl_bktamu value='$r[tgl_bktamu]'></td>
+				</tr>
+				<tr>
+					<td>Komentar:</td>
+					<td><textarea class='form-control' type=text name=komentar value='$r[komentar]'></textarea></td>
+				</tr>
+				<tr>
+					<td colspan=2>
+						<input class='btn btn-info' type=submit value=Simpan>
+						<input class='btn btn-warning' type=button value=Batal onClick=self.history.back()>
+					</td>
+				</tr>
+
+
+
 				<tr>
 					<td colspan=2>
 						<input class='btn btn-info' type=submit value='Update'>

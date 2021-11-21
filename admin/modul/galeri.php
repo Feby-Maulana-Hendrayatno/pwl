@@ -26,7 +26,7 @@ switch (@$_GET['act']) {
 				<td>$r[tgl_galeri]</td>
 				<td><img src='galeri/$r[gambar]' width='50'></td>
 				<td><a href=?module=galeri&act=editgaleri&id=$r[id_galeri]>Edit</a> | 
-					<a href=\"aksi_bukutamu.php?module=galeri&act=hapus&id=$r[id_galeri]\" onClick=\"return confirm('apakah anda benar akan menghapus galeri $r[id_galeri]?')\">Hapus</a>
+					<a href=\"aksi.php?module=galeri&act=hapus&id=$r[id_galeri]\" onClick=\"return confirm('apakah anda benar akan menghapus galeri $r[id_galeri]?')\">Hapus</a>
 				</td>
 			  </tr>";
 			  $no++;

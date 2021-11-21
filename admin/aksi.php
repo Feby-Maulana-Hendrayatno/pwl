@@ -91,10 +91,11 @@
 
 		}
 		if ($set) {
-			$nm_galeri = $_POST['nm_gal'];
+			$id_album = $_POST['id_album'];
+			$nm_galeri = $_POST['nm_galeri'];
 			$ket = $_POST['ket'];
 			$tgl_galeri = date('d n Y');
-			$sql = mysqli_query($koneksi,"insert into galeri(nm_galeri,ket,tgl_galeri,gambar) values('$nm_galeri','$ket','$tgl_galeri','$nama_file')");
+			$sql = mysqli_query($koneksi,"insert into galeri(id_album, nm_galeri,ket,tgl_galeri,gambar) values('$id_album', '$nm_galeri','$ket','$tgl_galeri','$nama_file')");
 			$msg = $msg.'Upload Galeri Sukses..';
 			print "<meta http-equiv=\"refresh\"content=\"1;URL=server.php?module=galeri\">";
 		}

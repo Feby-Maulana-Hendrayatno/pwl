@@ -4,7 +4,7 @@
 	//bagian home admin
 	if ($_GET['module']=='home') {
 		echo "<h2>Halaman Utama</h2>
-		<p class=welcome>Selamat Datang <b>$_SESSION[namauser]</b>,
+		<p class=welcome>Selamat Datang <b>	</b>,
 		Silahkan klik menu pilihan disebelah kiri untuk mengelola konten website<br>
 		Terima Kasih </p>
 		<p>&nbsp;</p>

@@ -87,8 +87,8 @@ switch (@$_GET['act']) {
 		$r=mysqli_fetch_array($edit);
 		echo "<h2>Edit Buku Tamu</h2>
 		<div class='col-md-4'>
-		<form method=post action='aksi_bukutamu.php?module=user&act=update'>
-			<input type=hidden name=id value='$r[id_bktamu]'>
+		<form method=post action='aksi_bukutamu.php?module=bukutamu&act=update'>
+			<input type=hidden name=id_bktamu value='$r[id_bktamu]'>
 			<table class='table'>				
 				<tr>
 					<td>Status:</td>
@@ -114,15 +114,6 @@ switch (@$_GET['act']) {
 					<td>Komentar:</td>
 					<td><textarea class='form-control' type=text name=komentar value='$r[komentar]'></textarea></td>
 				</tr>
-				<tr>
-					<td colspan=2>
-						<input class='btn btn-info' type=submit value=Simpan>
-						<input class='btn btn-warning' type=button value=Batal onClick=self.history.back()>
-					</td>
-				</tr>
-
-
-
 				<tr>
 					<td colspan=2>
 						<input class='btn btn-info' type=submit value='Update'>

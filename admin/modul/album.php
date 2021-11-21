@@ -1,5 +1,6 @@
 <?php 
 switch (@$_GET['act']) {
+			
 	//tampil user
 	default:
 	echo "<h2>Album Photo</h2>

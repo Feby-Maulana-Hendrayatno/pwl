@@ -2,7 +2,7 @@
 	$server = "localhost";
 	$username = "root";
 	$password = "";
-	$db_name = "coba_db";
+	$db_name = "coba_db_2";
 
 	//koneksi dan pilih database di server
 	$koneksi=mysqli_connect($server,$username,$password) 

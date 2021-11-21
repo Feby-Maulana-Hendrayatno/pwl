@@ -94,8 +94,8 @@
 			$id_album = $_POST['id_album'];
 			$nm_galeri = $_POST['nm_galeri'];
 			$ket = $_POST['ket'];
-			$tgl_galeri = date('d n Y');
-			$sql = mysqli_query($koneksi,"insert into galeri(id_album, nm_galeri,ket,tgl_galeri,gambar) values('$id_album', '$nm_galeri','$ket','$tgl_galeri','$nama_file')");
+			$tgl_galeri = date('Y-m-d');
+			$sql = mysqli_query($koneksi,"insert into galeri values('', '$id_album', '$nm_galeri','$ket','$tgl_galeri','$nama_file')");
 			$msg = $msg.'Upload Galeri Sukses..';
 			print "<meta http-equiv=\"refresh\"content=\"1;URL=server.php?module=galeri\">";
 		}
@@ -131,7 +131,7 @@
 				}
 				else
 				{
-					$unlink = mysqli_query($koneksi,"select * from galeri where id_galeri='$_POST[id]'");
+					$unlink = mysqli_query($koneksi,"select * from galeri where id_galeri='$_POST[id_galeri]'");
 					$CekLink=mysqli_fetch_array($unlink);
 					if (!empty($CekLink['gambar'])) {
 						unlink("galeri/$CekLink[gambar]");
@@ -150,15 +150,17 @@
 			}
 			
 			if ($set) {
-				$id = $_POST['id'];
-				$nm_galeri = $_POST['nm_gal'];
+				$id_galeri = $_POST['id_galeri'];
+				$id_album = $_POST['id_album'];
+				$nm_galeri = $_POST['nm_galeri'];
+				$tgl_galeri = date("Y-m-d");
 				$ket = $_POST['ket'];
 
 			if (empty($lokasi_file)) {
-				mysqli_query($koneksi,"update galeri set nm_galeri='$nm_galeri', ket='$ket' where id_galeri='$id' ");
+				mysqli_query($koneksi,"update galeri set id_album = '$id_album', nm_galeri='$nm_galeri', ket='$ket' , tgl_galeri = '$tgl_galeri'  where id_galeri='$id_galeri' ");
 			}
 			else{
-				mysqli_query($koneksi,"update galeri set nm_galeri='$nm_galeri', ket='$ket', gambar='$nama_file' where id_galeri='$id' ");
+				mysqli_query($koneksi,"update galeri set id_album = '$id_album', nm_galeri = '$nm_galeri', ket='$ket' , tgl_galeri = '$tgl_galeri' , gambar='$nama_file' where id_galeri='$id_galeri' ");
 			}
 			$msg = $msg.'Update Galeri Sukses..';
 			print "<meta http-equiv=\"refresh\"content=\"1;URL=server.php?module=galeri\">";
